@@ -1,14 +1,6 @@
 # require database cleaner at the top level
 require 'database_cleaner'
 
-# configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
-end
-
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -65,6 +57,14 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+    # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
 
   # add `FactoryGirl` methods
   config.include FactoryGirl::Syntax::Methods
