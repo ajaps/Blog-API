@@ -10,7 +10,6 @@ class User < ApplicationRecord
 
   has_many :blog_posts
 
-
   def self.generate_user_id
     generate_id
   end
