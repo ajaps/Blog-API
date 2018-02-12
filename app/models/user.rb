@@ -9,4 +9,9 @@ class User < ApplicationRecord
   validates :gender, presence: true, acceptance: { accept: %w(Male Female) }
 
   has_many :blog_posts
+
+
+  def self.generate_user_id
+    generate_id
+  end
 end
