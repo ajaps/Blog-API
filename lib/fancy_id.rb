@@ -49,7 +49,7 @@ class FancyID
   end
 
   def seed
-    DateTime.now.strftime("%Q").to_i
+    Time.now.strftime("%s%j%y").to_i
   end
 end
 
