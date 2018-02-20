@@ -246,3 +246,5 @@ Metrics/BlockLength:
   Description: Increase block length "Block has too many lines"
   CountComments: false
   Max: 60
+  Exclude:
+  - spec/**/*
