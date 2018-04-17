@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+
 # For env variables
 gem "figaro"
 
@@ -28,6 +29,10 @@ gem "figaro"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
+
+#  JSON web token - encoding and decoding of HMACSHA256 tokens
+gem 'jwt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
