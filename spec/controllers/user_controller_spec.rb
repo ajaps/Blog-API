@@ -8,7 +8,8 @@ RSpec.describe UserController, type: :controller do
       "last_name": "Trump",
       "email": "johndoe@goal.com",
       "gender": "Male",
-      "role": "Tester"
+      "role": "Tester",
+      "password": "goal.com"
     }
   end
 

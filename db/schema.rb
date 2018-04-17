@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211150005) do
+ActiveRecord::Schema.define(version: 20180221112118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,15 +25,23 @@ ActiveRecord::Schema.define(version: 20180211150005) do
     t.index ["user_id"], name: "index_blog_posts_on_user_id"
   end
 
+  create_table "private_infos", force: :cascade do |t|
+    t.text "password"
+    t.string "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", primary_key: "user_id", id: :string, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
     t.string "gender"
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
+  add_foreign_key "private_infos", "users", primary_key: "user_id"
 end
