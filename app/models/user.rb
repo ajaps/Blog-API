@@ -17,14 +17,15 @@ class User < ApplicationRecord
   validates :role, presence: true
 
   has_many :blog_posts
-  has_one :private_info, dependent: :destroy
+  # has_one :private_info, dependent: :destroy
 
-  def self.generate_user_id
-    generate_id
-  end
+  before_validation :generate_user_id, on: :create
 
-  def self.create_user(user_details)
-    user_details[:user_id] = generate_user_id
-    create(user_details)
+  has_secure_password
+
+  private
+
+  def generate_user_id
+    self.user_id = generate_id
   end
 end
