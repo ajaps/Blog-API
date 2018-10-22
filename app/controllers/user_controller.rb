@@ -3,7 +3,7 @@ class UserController < ApplicationController
   before_action :authenticate_request, only: %i[show update]
 
   def create
-    new_user = User.create!(user_params)
+    new_user = User.new(user_params)
 
     if new_user.save
       json_response({
