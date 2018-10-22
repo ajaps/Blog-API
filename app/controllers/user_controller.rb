@@ -8,7 +8,7 @@ class UserController < ApplicationController
     if new_user.save
       json_response({
                     message: "User created sucessfully",
-                    user_id: new_user.user_id
+                    user_id: new_user.uuid
                   }, 201)
     else
       json_response({ errors: new_user.errors }, 422)

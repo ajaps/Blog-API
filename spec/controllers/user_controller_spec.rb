@@ -25,7 +25,7 @@ RSpec.describe UserController, type: :controller do
 
       it "returns the user id" do
         response = create_user
-        expect(response.body).to include User.last.user_id
+        expect(response.body).to include User.last.uuid
       end
 
       it "returns a 200 status" do
@@ -40,7 +40,7 @@ RSpec.describe UserController, type: :controller do
       end
 
       it "returns the relevant error information" do
-        expect(json).to include "Email is invalid"
+        expect(json).to include "{\"email\":[\"is invalid\"]}"
       end
 
       it "returns a 422 status" do
