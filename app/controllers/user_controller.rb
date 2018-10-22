@@ -3,12 +3,12 @@ class UserController < ApplicationController
   before_action :authenticate_request, only: %i[show update]
 
   def create
-    new_user = User.create!(user_params)
+    new_user = User.new(user_params)
 
     if new_user.save
       json_response({
                     message: "User created sucessfully",
-                    user_id: new_user.user_id
+                    user_id: new_user.uuid
                   }, 201)
     else
       json_response({ errors: new_user.errors }, 422)

@@ -21,20 +21,20 @@ ActiveRecord::Schema.define(version: 20181021024234) do
     t.boolean "view_rights"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_blog_posts_on_user_id"
+    t.bigint "users_id"
+    t.index ["users_id"], name: "index_blog_posts_on_users_id"
   end
 
-  create_table "users", primary_key: "user_id", id: :string, force: :cascade do |t|
+  create_table "users", primary_key: "uuid", id: :string, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "email"
     t.string "gender"
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email"
     t.string "password_digest"
-    t.index ["user_id"], name: "index_users_on_user_id", unique: true
+    t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
 end
