@@ -15,12 +15,17 @@ RSpec.describe UserController, type: :controller do
 
   describe "#create" do
     context "when user information is valid" do
-      let!(:create_user) do
+      let(:create_user) do
         post :create, params: { user_details: user_detail }, xhr: true
       end
 
+      it "creates a new record in the User table" do
+        expect{ create_user }.to change { User.count }.by(1)
+      end
+
       it "returns the user id" do
-        expect(json).to include User.last.user_id
+        response = create_user
+        expect(response.body).to include User.last.user_id
       end
 
       it "returns a 200 status" do
@@ -35,8 +40,11 @@ RSpec.describe UserController, type: :controller do
       end
 
       it "returns the relevant error information" do
-        expect(json).to include "errors"
-        expect(json).to include "\"email\":[\"is invalid\"]"
+        expect(json).to include "Email is invalid"
+      end
+
+      it "returns a 422 status" do
+        expect(create_user_with_invalid_details).to have_http_status 422
       end
     end
   end

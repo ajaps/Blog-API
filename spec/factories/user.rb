@@ -6,5 +6,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     gender "Male"
     role "Admin"
+    paassword 'pass'
   end
 end
