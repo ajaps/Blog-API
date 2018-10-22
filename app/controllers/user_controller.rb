@@ -1,5 +1,6 @@
 class UserController < ApplicationController
   include Response
+  before_action :authenticate_request, only: %i[show update]
 
   def create
     new_user = User.create!(user_params)
