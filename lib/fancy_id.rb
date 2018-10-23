@@ -43,13 +43,13 @@ class FancyID
 
     12.times { |i| id << PUSH_CHARS[@rand_chars[i]] }
 
-    assert(id.length == 22, "next_id: Length should be 22.")
+    assert(id.length == 20, "next_id: Length should be 20.")
 
     id
   end
 
   def seed
-    DateTime.now.strftime("%Q").to_i
+    Time.now.strftime("%s%j%y").to_i
   end
 end
 
