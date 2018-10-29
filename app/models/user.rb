@@ -17,13 +17,27 @@ class User < ApplicationRecord
   validates :role, presence: true
 
   has_many :blog_posts
-  # has_one :private_info, dependent: :destroy
 
   before_validation :generate_uuid, on: :create
+  # before_validation :set_role, on: %i[ create update ]# Ensure ony admin can set user role, default 'tester'
+  before_validation :set_role, on: :create# Set default role - 'tester'
+  # before_validation :set_role_by_admin, on: :update# Set default role - 'tester'
 
   has_secure_password
 
   private
+
+  def name
+    "#{ first_name } #{ last_name }"
+  end
+
+  def set_role
+    self.role = 'tester'
+  end
+
+  def set_role_by_admin
+    @current_user.role == 'Admin' ? true : false
+  end
 
   def generate_uuid
     self.uuid = generate_id
