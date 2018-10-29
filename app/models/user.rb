@@ -27,6 +27,10 @@ class User < ApplicationRecord
 
   private
 
+  def name
+    "#{ first_name } #{ last_name }"
+  end
+
   def set_role
     self.role = 'tester'
   end

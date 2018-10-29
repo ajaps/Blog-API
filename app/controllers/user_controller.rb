@@ -4,11 +4,15 @@ class UserController < ApplicationController
   skip_before_action :authenticate_request, only: :create
 
   def index
+    users = User.all.select(:uuid, :first_name, :last_name, :gender, :role)
 
+    json_response({ users: users }, 200)
   end
 
   def show
+    user = User.where(uuid: params[:id]).select(:uuid, :first_name, :last_name, :gender, :role)
 
+    json_response({ user: user }, 200)
   end
 
   def create
