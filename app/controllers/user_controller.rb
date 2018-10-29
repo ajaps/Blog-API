@@ -20,12 +20,14 @@ class UserController < ApplicationController
 
     if new_user.save
       auth_token = AuthenticateUser.new(new_user.email, new_user.password).call.result
+
       json_response({
                     message: "User created sucessfully",
                     user_email: new_user.email,
                     token: auth_token
                   }, 201)
     else
+
       json_response({ errors: new_user.errors }, 422)
     end
   end
@@ -53,6 +55,17 @@ class UserController < ApplicationController
                     message: "An Error occured while updating user",
                     updated: updated_user
                   }, 200)
+  end
+
+  def destroy
+    if @current_user.id == params[:id]
+      User.find(params[:id]).destroy
+
+      return json_response({ message: 'User profile deleted sucessfully'}, 200)
+    else
+
+      json_response({ message: "You are not alowed to delete another user's profile"}, 403)
+    end
   end
 
   private
