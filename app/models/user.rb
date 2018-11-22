@@ -19,9 +19,7 @@ class User < ApplicationRecord
   has_many :blog_posts
 
   before_validation :generate_uuid, on: :create
-  # before_validation :set_role, on: %i[ create update ]# Ensure ony admin can set user role, default 'tester'
   before_validation :set_role, on: :create# Set default role - 'tester'
-  # before_validation :set_role_by_admin, on: :update# Set default role - 'tester'
 
   has_secure_password
 
@@ -35,7 +33,7 @@ class User < ApplicationRecord
     self.role = 'tester'
   end
 
-  def set_role_by_admin
+  def role_type
     @current_user.role == 'Admin' ? true : false
   end
 
