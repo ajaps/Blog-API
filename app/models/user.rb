@@ -33,7 +33,7 @@ class User < ApplicationRecord
     self.role = 'tester'
   end
 
-  def set_role_by_admin
+  def role_type
     @current_user.role == 'Admin' ? true : false
   end
 
